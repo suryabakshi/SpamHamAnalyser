@@ -12,7 +12,7 @@ import pickle
 
 app = Flask(__name__)
 
-def textPreprocessor1(featureRecord):
+def textPreprocessor(featureRecord):
     #a.Remove Punctuation
     removePunctuation = [char for char in featureRecord if char not in string.punctuation]
     sentences = ''.join(removePunctuation)
@@ -28,7 +28,7 @@ def textPreprocessor1(featureRecord):
     
     return finalWords
 
-textPreprocessor = pickle.load(open('textPreprocessor.pkl', 'rb'))
+#textPreprocessor = pickle.load(open('textPreprocessor.pkl', 'rb'))
 model = pickle.load(open('SMS_spamham.pkl', 'rb'))
 tfIdfObject = pickle.load(open('tfIdfObject.pkl','rb'))
 finalWordVocab= pickle.load(open('word_vocab.pkl','rb'))
@@ -48,7 +48,7 @@ def predict():
     
     #1. Preprocess
 
-    preProcessedFeatures = textPreprocessor1(SMSInput)
+    preProcessedFeatures = textPreprocessor(SMSInput)
 
     #2. BOW transformation
     bowFeature = finalWordVocab.transform(preProcessedFeatures)
