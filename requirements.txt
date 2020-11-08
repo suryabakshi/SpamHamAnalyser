@@ -11,4 +11,3 @@ pandas>=0.19
 matplotlib>=1.4.3
 pickleshare>=0.7.5
 nltk>=3.3
-pickle>=2.3
